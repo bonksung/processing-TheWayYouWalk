@@ -1,7 +1,9 @@
 // The Way You Walk
 // http://github.com/bonksung/processing-TheWayYouWalk
 
-final String ENV = "development"; // 'production'
+final String ENV = "development"; // "production"
 
 Background background;
-Planet planets[] = new Planet[26];
+ArrayList<You>    yous    = new ArrayList<You>();
+ArrayList<Planet> planets = new ArrayList<Planet>();
+ArrayList<Mirror> mirrors = new ArrayList<Mirror>();
