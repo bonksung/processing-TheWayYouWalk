@@ -1,5 +1,5 @@
-// The Way You Walk
-// http://github.com/bonksung/processing-TheWayYouWalk
+/* The Way You Walk
+   http://github.com/bonksung/processing-TheWayYouWalk */
 
 final String ENV = "development"; // "production"
 
