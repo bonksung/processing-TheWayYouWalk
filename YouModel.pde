@@ -3,15 +3,15 @@
 class You {
   final int objectWidth = 200;
   final int objectHeight = 300;
-  int x, y;
+  float x, y, w, h;
   int direction = 0; // 0 ~ 360
   int sequence = 0;  // 0 ~ 3
-  final int dy[] = {-1, -1, -1,  0, 0,  1, 1, 1};
-  final int dx[] = {-1,  0,  1, -1, 1, -1, 0, 1};
   
-  You(int x, int y, int direction) {
+  You(float x, float y, int direction) {
     this.x = x;
     this.y = y;
+    this.w = width/30;
+    this.h = height/30;
     this.direction = direction;
   }
   
@@ -21,14 +21,35 @@ class You {
     return 0;
   }
   
+  float dx() {
+    return cos(radians(90)-radians(direction));  
+  }
+  
+  float dy() {
+    return sin(radians(270)-radians(direction)); 
+  }
+  
   void walk() {
     int p = this.convertDirectionToPos();
-    this.x += dx[p];
-    this.y += dy[p];
+    println(nf(direction) + " " + nf(p) + " " + nf(x) + " " + nf(y));
+    this.x += dx();
+    this.y += dy();
+    if(y <= 0) collision(90);  
+    else if(x <= 0) collision(180);
+    else if(x >= width) collision(180);
+    else if(y >= height) collision(90);
+    this.sequence = frameCount / 10 % 4;
+  }
+  
+  void collision(int angle) {
+    float new_angle = angle * 2 - this.direction;
+    if(new_angle < 0) new_angle += 360;
+    this.direction = int(new_angle);
   }
   
   void render() {
     int p = this.convertDirectionToPos();
-    image(YOU_IMAGE[p][sequence], x, y);
+    imageMode(CENTER);
+    image(YOU_IMAGE[p][sequence], x, y, w, h);
   }
 }

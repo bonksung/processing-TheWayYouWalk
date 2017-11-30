@@ -5,8 +5,10 @@ void setup() {
 
 void settings() {
   int width = getWidth(), height = getHeight();
-  size(width, height, P3D); 
+  size(width, height, P3D);
+  batch_stars();
   batch_planets();
+  batch_you();
 }
 
 void load_assets() {
@@ -22,4 +24,6 @@ void load_assets() {
       ALPHABET_IMAGE[i][j] = loadImage(AI_PREFIX + current_alphabet + "_" + nf(j) + ".png");
   }    
   MIRROR_IMAGE = loadImage(MI_PREFIX + "default.png");
+  for(int i=0; i<4; i++)
+    BACKGROUND_IMAGE[i] = loadImage(BI_PREFIX + nf(i) + ".png");
 }

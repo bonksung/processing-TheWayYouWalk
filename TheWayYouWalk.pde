@@ -7,3 +7,4 @@ Background background;
 ArrayList<You>    yous    = new ArrayList<You>();
 ArrayList<Planet> planets = new ArrayList<Planet>();
 ArrayList<Mirror> mirrors = new ArrayList<Mirror>();
+ArrayList<StarEffect> stars = new ArrayList<StarEffect>();
