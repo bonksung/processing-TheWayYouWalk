@@ -1,5 +1,6 @@
 class Mirror {
-  int x, y;
+  
+  float x, y, w, h;
   int angle;
 }
 

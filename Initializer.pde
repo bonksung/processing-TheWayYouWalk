@@ -6,6 +6,7 @@ void setup() {
 void settings() {
   int width = getWidth(), height = getHeight();
   size(width, height, P3D); 
+  batch_planets();
 }
 
 void load_assets() {
@@ -20,4 +21,5 @@ void load_assets() {
     for(int j=1; j<5; j++) 
       ALPHABET_IMAGE[i][j] = loadImage(AI_PREFIX + current_alphabet + "_" + nf(j) + ".png");
   }    
+  MIRROR_IMAGE = loadImage(MI_PREFIX + "default.png");
 }
