@@ -13,7 +13,6 @@ void batch_planets() {
       }
       if(!collision_with_other) more_random_batch_needs = false;
     } 
-    
     planets.add(planet);  
   }
 }

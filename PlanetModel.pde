@@ -8,9 +8,8 @@ class Planet {
     this.alphabet = alphabet;
     this.w = width/REDUCE_RATIO;
     this.h = height/REDUCE_RATIO;
-    
     this.x = min(x, width-this.w);
-    this.y = min(y, height-this.h); 
+    this.y = min(y, height-this.h);
   }
   
   void render() {
@@ -20,7 +19,7 @@ class Planet {
   Boolean check_collision(Planet target) {
     return ((this.x < target.x + target.w && this.x > target.x) ||
             (target.x < this.x + this.w && target.x > this.x))
-           &&((this.y < target.y + target.h && this.y > target.y) ||
-              (target.y < this.y + this.h && target.y > this.y));
+           && ((this.y < target.y + target.h && this.y > target.y) ||
+               (target.y < this.y + this.h && target.y > this.y));
   }
 }

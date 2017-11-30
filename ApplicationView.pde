@@ -1,4 +1,3 @@
-void draw() {
-  
+void draw() {  
   render_planets();  
 }
