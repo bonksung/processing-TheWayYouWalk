@@ -16,9 +16,9 @@ class StarEffect extends Effect {
   StarEffect(float x, float y) {
     this.x = x;
     this.y = y;
-    this.r = 185;
-    this.g = 174;
-    this.b = 232;
+    this.r = 255;
+    this.g = 255;
+    this.b = 255;
     this.opacity = random(1,99);
     this.w = random(width/500, width/290);
     this.h = this.w;

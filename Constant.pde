@@ -1,6 +1,7 @@
 final int screenWidth  = 3840;
 final int screenHeight = 2160*2;
-final int reductionRatio = 4;
+final int reductionRatio = 5;
+final int TRACE_LENGTH = 250;
 
 final String YI_PREFIX = "assets/you/";
 final String AI_PREFIX = "assets/alphabet/";

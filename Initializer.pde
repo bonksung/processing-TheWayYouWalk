@@ -7,6 +7,7 @@ void settings() {
   int width = getWidth(), height = getHeight();
   size(width, height, P3D);
   batch_stars();
+  batch_mirrors();
   batch_planets();
   batch_you();
 }

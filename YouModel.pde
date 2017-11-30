@@ -6,6 +6,7 @@ class You {
   float x, y, w, h;
   int direction = 0; // 0 ~ 360
   int sequence = 0;  // 0 ~ 3
+  ArrayList<Trace> traces = new ArrayList<Trace>();
   
   You(float x, float y, int direction) {
     this.x = x;
@@ -15,9 +16,9 @@ class You {
     this.direction = direction;
   }
   
-  int convertDirectionToPos() {
-    if(0 <= this.direction && this.direction < 360-45)
-      return int(map(this.direction, 0, 360-45, 1, 8));
+  int convertDirectionToPos(int direction) {
+    if(0 <= direction && direction < 360-45)
+      return int(map(direction, 0, 360-45, 1, 8));
     return 0;
   }
   
@@ -30,8 +31,13 @@ class You {
   }
   
   void walk() {
-    int p = this.convertDirectionToPos();
-    println(nf(direction) + " " + nf(p) + " " + nf(x) + " " + nf(y));
+    int p = this.convertDirectionToPos(this.direction);
+    //println(nf(direction) + " " + nf(p) + " " + nf(x) + " " + nf(y));
+    Trace before = new Trace(this.x, this.y, this.sequence, this.direction);
+    this.traces.add(before);
+    if(traces.size() > TRACE_LENGTH) {
+      this.traces.remove(0);
+    }
     this.x += dx();
     this.y += dy();
     if(y <= 0) collision(90);  
@@ -48,8 +54,18 @@ class You {
   }
   
   void render() {
-    int p = this.convertDirectionToPos();
+    int p;
     imageMode(CENTER);
+    if(traces.size() > 0) {
+      for(int i=0; i<traces.size(); i++) {
+        Trace trace = traces.get(i);
+        p = this.convertDirectionToPos(trace.direction);
+        tint(255, map(i, 0, TRACE_LENGTH-1, 1, 50));
+        image(YOU_IMAGE[p][trace.sequence], trace.x, trace.y, w * i / TRACE_LENGTH, h * i / TRACE_LENGTH);
+        tint(255);
+      }
+    }
+    p = this.convertDirectionToPos(this.direction);
     image(YOU_IMAGE[p][sequence], x, y, w, h);
   }
 }
