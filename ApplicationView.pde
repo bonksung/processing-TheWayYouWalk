@@ -5,4 +5,8 @@ void draw() {
   render_mirrors();
   you_walk();
   render_yous();
+  for(You you : you_should_be) {
+    yous.add(you);
+  }
+  you_should_be.clear();
 }

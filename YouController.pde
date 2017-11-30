@@ -7,7 +7,12 @@ void render_yous() {
 }
 
 void batch_you() {
+  
   You you = new You(width/2, height*3/4, 349);
+  yous.add(you);
+  you = new You(100, 100, 340);
+  yous.add(you);
+  you = new You(width-100, 100, 80);
   yous.add(you);
   you = new You(width/2+41, height*3/4, 213);
   yous.add(you);

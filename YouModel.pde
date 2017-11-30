@@ -40,17 +40,32 @@ class You {
     }
     this.x += dx();
     this.y += dy();
-    if(y <= 0) collision(90);  
-    else if(x <= 0) collision(180);
-    else if(x >= width) collision(180);
-    else if(y >= height) collision(90);
+    if(y <= 0) this.direction = collision(90);  
+    else if(x <= 0) this.direction = collision(180);
+    else if(x >= width) this.direction = collision(180);
+    else if(y >= height) this.direction = collision(90);
+    collision_with_mirrors();
     this.sequence = frameCount / 10 % 4;
   }
   
-  void collision(int angle) {
+  void collision_with_mirrors() {
+    if(this.traces.size() < TRACE_LENGTH) return;
+    for(Mirror mirror : mirrors) {
+      if(the_way_you_walk(mirror.range, new PVector(this.x, this.y))) {
+        int reflect_angle = collision(mirror.angle_plus_90());
+        
+        You ed = new You(x, y, reflect_angle);
+        you_should_be.add(ed); //after render everything
+        this.direction = int(degrees(radians(this.direction) + radians(180)));
+        return;
+      }
+    }
+  }
+  
+  int collision(int angle) {
     float new_angle = angle * 2 - this.direction;
     if(new_angle < 0) new_angle += 360;
-    this.direction = int(new_angle);
+    return int(new_angle);
   }
   
   void render() {
