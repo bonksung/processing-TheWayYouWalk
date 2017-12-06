@@ -1,6 +1,7 @@
 void setup() {
   background(0); 
   load_assets();
+  ws = new WebsocketServer(this,8025,"/john");
 }
 
 void settings() {
@@ -23,8 +24,23 @@ void load_assets() {
     ALPHABET_IMAGE[i][0] = loadImage(AI_PREFIX + current_alphabet + "_default.png");
     for(int j=1; j<5; j++) 
       ALPHABET_IMAGE[i][j] = loadImage(AI_PREFIX + current_alphabet + "_" + nf(j) + ".png");
-  }    
+    ALPHABET_IMAGE[i][5] = loadImage(AI_PREFIX + current_alphabet + "_" + "glow_1.png");
+    ALPHABET_IMAGE[i][6] = loadImage(AI_PREFIX + current_alphabet + "_" + "glow_2.png");
+  }   
   MIRROR_IMAGE = loadImage(MI_PREFIX + "default.png");
+  GLOW = loadImage(AI_PREFIX + "glow.png");
   for(int i=0; i<4; i++)
     BACKGROUND_IMAGE[i] = loadImage(BI_PREFIX + nf(i) + ".png");
+  for(int i=1; i<=27; i++) {
+    Minim minim = new Minim(this);
+    AudioPlayer player = minim.loadFile(BGM_PREFIX + nf(i) + ".mp3");
+    minims.add(minim);
+    if(i>1) player.mute();
+    player.play();
+    if(i > 1) {
+      player.cue(players.get(0).position()); 
+    }
+    players.add(player);
+  }
+  
 }

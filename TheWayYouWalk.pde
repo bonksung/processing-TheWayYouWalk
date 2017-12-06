@@ -1,14 +1,24 @@
 /* The Way You Walk
    http://github.com/bonksung/processing-TheWayYouWalk */
 
+import ddf.minim.*;
+import websockets.*;
+WebsocketServer ws;
+
 final String ENV = "development"; // "production"
 
-Background background;
+int song_sequence = 1;
 ArrayList<You>    yous          = new ArrayList<You>();
 ArrayList<You>    you_should_be = new ArrayList<You>();
 ArrayList<Planet> planets       = new ArrayList<Planet>();
 ArrayList<Mirror> mirrors       = new ArrayList<Mirror>();
 ArrayList<StarEffect> stars = new ArrayList<StarEffect>();
+ArrayList<StarfishEffect> starfishes = new ArrayList<StarfishEffect>();
+ArrayList<Flower> flowers       = new ArrayList<Flower>();
+ArrayList<Minim>       minims  = new ArrayList<Minim>();
+ArrayList<AudioPlayer> players = new ArrayList<AudioPlayer>();
+ArrayList<Flower>   to_be_deleted = new ArrayList<Flower>();
+int angle = 0;
 
 boolean the_way_you_walk(PVector[] verts, PVector pos) {
   int i, j;
@@ -20,4 +30,8 @@ boolean the_way_you_walk(PVector[] verts, PVector pos) {
       c = !c;
 
   return c;
+}
+
+void keyPressed(){
+  setup();
 }
