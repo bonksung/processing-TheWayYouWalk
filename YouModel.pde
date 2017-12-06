@@ -38,13 +38,14 @@ class You {
     if(traces.size() > TRACE_LENGTH) {
       this.traces.remove(0);
     }
-    this.x += dx();
-    this.y += dy();
+    this.x += 4*dx();
+    this.y += 4*dy();
     if(y <= 0) this.direction = collision(90);  
     else if(x <= 0) this.direction = collision(180);
     else if(x >= width) this.direction = collision(180);
     else if(y >= height) this.direction = collision(90);
     collision_with_mirrors();
+    collision_with_planets();
     this.sequence = frameCount / 10 % 4;
   }
   
@@ -58,6 +59,18 @@ class You {
         you_should_be.add(ed); //after render everything
         this.direction = int(degrees(radians(this.direction) + radians(180)));
         return;
+      }
+    }
+  }
+  
+  void collision_with_planets() {
+    for(Planet planet : planets) {
+      if(the_way_you_walk(planet.range, new PVector(this.x, this.y))) {
+        if(planet.virgin) {
+          planet.virgin = !planet.virgin;
+          up_sequence();
+        }
+        planet.dflower = 1;
       }
     }
   }

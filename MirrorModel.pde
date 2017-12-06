@@ -15,12 +15,12 @@ class Mirror {
     image(MIRROR_IMAGE, 0, 0, w*1.4, h*1.4);
     for(int i=int(-w*1.4/2); i<=int(w*1.4/2); i++) {
       stroke(255, 30);
-      line(i, 0, i, -random(0,100));
+      line(i, 0, i, -random(0,200));
     }
     range[0] = new PVector(screenX(-w*1.4/2, 0), screenY(-w*1.4/2, 0)); 
     range[1] = new PVector(screenX(w*1.4/2, 0),  screenY(w*1.4/2, 0)); 
-    range[2] = new PVector(screenX(w*1.4/2, 1),  screenY(w*1.4/2, 1));
-    range[3] = new PVector(screenX(-w*1.4/2, 1), screenY(-w*1.4/2, 1));
+    range[2] = new PVector(screenX(w*1.4/2, 50),  screenY(w*1.4/2, 50));
+    range[3] = new PVector(screenX(-w*1.4/2, 50), screenY(-w*1.4/2, 50));
     popMatrix();
   }
 }
